@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="robots" content="noindex"><title>Checkout · Mundo de Papel</title>
+  <link rel="stylesheet" href="./checkout.css">
+  <script type="module" src="./checkout.js"></script>
+</head>
+<body>
+  <main class="painel">
+    <header class="produto">
+      <img src="./assets/checkout/pacote-basico.jpg" width="58" height="58" alt="">
+      <div><p id="produto">Bonecas de Papel · Pacote Básico</p><strong id="preco">R$ 10,00</strong></div>
+      <span class="pais" aria-label="Brasil">🇧🇷</span>
+    </header>
+    <form id="checkout">
+      <fieldset class="dados" disabled>
+        <label>E-mail<span>*</span><input required name="email" type="email" autocomplete="email" placeholder="Digite seu e-mail" maxlength="150"></label>
+        <label>Nome completo<span>*</span><input required name="name" autocomplete="name" placeholder="Digite seu nome completo" minlength="3" maxlength="100"></label>
+        <div class="linha">
+          <label>CPF/CNPJ<span>*</span><input required name="document" inputmode="numeric" placeholder="Digite seu documento" maxlength="18"></label>
+          <label>Telefone<span>*</span><span class="telefone"><span>🇧🇷 +55</span><input required name="phone" type="tel" autocomplete="tel-national" placeholder="(00) 00000-0000" maxlength="24"></span></label>
+        </div>
+      </fieldset>
+      <div class="metodo"><span aria-hidden="true">❖</span> Pix</div>
+      <section class="instrucoes" aria-label="Como pagar com Pix">
+        <div><span class="icone" aria-hidden="true">▦</span><p><strong>Copie os dados de pagamento</strong>Ao clicar no botão abaixo, você poderá escanear o QR Code ou copiar o código Pix.</p></div>
+        <div><span class="icone" aria-hidden="true">▤</span><p><strong>Realize o pagamento</strong>Abra o aplicativo do seu banco e realize o pagamento utilizando as informações copiadas.</p></div>
+        <div><span class="icone" aria-hidden="true">✔</span><p><strong>Pagamento confirmado</strong>Confira a confirmação no aplicativo do seu banco.</p></div>
+        <p class="aviso">Pague o Pix dentro do prazo informado pelo seu banco.</p>
+      </section>
+      <section aria-labelledby="ofertas">
+        <h1 id="ofertas">Você recebeu ofertas especiais!</h1>
+        <article class="oferta">
+          <div class="oferta-conteudo">
+            <header><img src="./assets/checkout/bobbie-goods.jpg" width="34" height="34" alt=""><strong>Bobbie Goods · Pacote Completo</strong><b>R$ 6,90</b></header>
+          </div>
+          <label><input type="checkbox" name="oferta" value="colorir" data-price="690">Adicionar oferta</label>
+          <div class="oferta-descricao"><p>+200 ilustrações fofas para imprimir, colorir e aproveitar momentos criativos longe das telas.</p></div>
+        </article>
+        <article class="oferta">
+          <div class="oferta-conteudo">
+            <header><img src="./assets/checkout/acessorios-cenarios.jpg" width="34" height="34" alt=""><strong>Acessórios e Cenários</strong><b>R$ 5,90</b></header>
+          </div>
+          <label><input type="checkbox" name="oferta" value="cenarios" data-price="590">Adicionar oferta</label>
+          <div class="oferta-descricao"><p>+200 acessórios e cenários para criar novas combinações e deixar a brincadeira ainda mais divertida.</p></div>
+        </article>
+        <article class="oferta">
+          <div class="oferta-conteudo">
+            <header><img src="./assets/checkout/roblox.jpg" width="34" height="34" alt=""><strong>Kit Roblox · Bonecos e Bonecas</strong><b>R$ 4,90</b></header>
+          </div>
+          <label><input type="checkbox" name="oferta" value="gamer" data-price="490">Adicionar oferta</label>
+          <div class="oferta-descricao"><p>+100 bonecos em estilo gamer, com personagens, roupas e combinações para recortar e montar.</p></div>
+        </article>
+        <article class="oferta">
+          <div class="oferta-conteudo">
+            <header><img src="./assets/receber-03-CvZ8d9a2.webp" width="34" height="34" alt=""><strong>Edição Princesas</strong><b>R$ 4,90</b></header>
+          </div>
+          <label><input type="checkbox" name="oferta" value="princesas" data-price="490">Adicionar oferta</label>
+          <div class="oferta-descricao"><p>+100 bonecas inspiradas no universo das princesas, com looks e acessórios para imprimir e brincar.</p></div>
+        </article>
+      </section>
+      <h2>Resumo do pedido</h2>
+      <dl class="resumo" aria-live="polite">
+        <div><dt>Subtotal</dt><dd id="subtotal">R$ 10,00</dd></div>
+        <div id="extras" hidden><dt>Ofertas adicionadas</dt><dd></dd></div>
+        <div><dt>Total</dt><dd id="total">R$ 10,00</dd></div>
+      </dl>
+      <button id="pagar" type="submit" disabled>Finalizar pagamento</button>
+      <p id="estado" role="status">Pagamento indisponível nesta prévia.</p>
+    </form>
+    <footer><a href="/#planos">Voltar aos pacotes</a><p><span aria-hidden="true">❖</span> Pagamento via Pix</p></footer>
+  </main>
+</body>
+</html>

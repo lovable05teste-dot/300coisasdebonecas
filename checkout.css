@@ -1,0 +1,79 @@
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+:root { font: 14px/1.4 Arial, sans-serif; color: #263445; background: #fff; }
+body { margin: 0; }
+p, h1, h2, dl, dd { margin: 0; }
+.painel { width: min(514px, calc(100% - 28px)); margin: 40px auto 64px; padding: 18px 14px; border: 1px solid #aab1ba; border-radius: 4px; background: #f1f2f4; }
+.produto { display: flex; align-items: center; gap: 7px; margin-bottom: 15px; }
+.produto img, .oferta img { object-fit: cover; flex-shrink: 0; }
+.produto p { color: #717c89; }
+.produto strong { color: #1e2936; font-size: 16px; }
+.pais { align-self: flex-start; margin-left: auto; padding: 6px 12px; border-radius: 10px; background: #f5f6f7; box-shadow: 0 2px 5px #0002; }
+.dados { border-bottom: 1px solid #d5d9de; padding-bottom: 13px; }
+.dados label { display: block; min-width: 0; font-size: 13px; }
+.dados label > span:first-of-type { color: #e94460; padding-left: 2px; }
+.dados > label { margin-bottom: 10px; }
+.linha { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+input:not([type="checkbox"]), textarea, .telefone { display: block; width: 100%; min-width: 0; margin-top: 5px; border: 1px solid #bfc6cf; border-radius: 7px; background: transparent; color: inherit; padding: 8px 13px; font: inherit; }
+input::placeholder { color: #717c89; }
+.dados .telefone { display: flex; align-items: center; gap: 6px; height: 35px; white-space: nowrap; }
+.telefone input { padding: 0; border: 0; margin: 0; border-radius: 0; }
+.metodo { margin: 13px 0 26px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 85px; height: 57px; border: 2px solid #7b8692; border-radius: 10px; background: #c9ced4; font-weight: bold; }
+.instrucoes { border: 1px solid #bfc6cf; border-radius: 4px; padding: 14px; font-size: 13px; }
+.instrucoes > div { display: flex; align-items: center; gap: 13px; margin-bottom: 14px; }
+.instrucoes strong { display: block; font-size: 14px; }
+.icone { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border-radius: 5px; background: #d9ebe2; font-size: 23px; }
+.aviso { background: #f3e0e4; color: #a32845; padding: 12px; border-radius: 6px; }
+h1 { margin: 13px 0 6px; color: #1f2b37; font-size: 18px; }
+.oferta { margin-bottom: 13px; border: 1px solid #35c77b; border-radius: 7px; overflow: hidden; }
+.oferta-conteudo { padding: 13px; }
+.oferta header { display: flex; align-items: center; gap: 7px; padding-bottom: 13px; border-bottom: 1px solid #cdd2d9; color: #4c5968; }
+.oferta img { border-radius: 6px; }
+.oferta b { margin-left: auto; align-self: flex-start; white-space: nowrap; border-radius: 20px; background: #139549; color: white; font-size: 11px; padding: 2px 7px; }
+.oferta p { margin-top: 13px; color: #526071; font-size: 13px; line-height: 1.55; }
+.oferta label { display: flex; align-items: center; gap: 7px; padding: 13px; background: #c6ebda; cursor: pointer; }
+.oferta input { width: 17px; height: 17px; margin: 0; accent-color: #139549; }
+h2 { margin: 15px 0 12px; font-size: 14px; }
+.resumo { border-radius: 5px; background: #e7e9ec; padding: 6px 13px; }
+.resumo div { display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; font-size: 13px; }
+.resumo div:last-child { border-top: 1px solid #cfd4da; font-weight: bold; font-size: 14px; }
+button { display: block; width: 100%; margin-top: 13px; padding: 9px; border: 0; border-radius: 10px; background: #138641; color: white; font: inherit; cursor: pointer; }
+button:disabled { background: #8ac8a4; color: #213d2d; cursor: default; }
+#estado, #copiado { margin-top: 8px; font-size: 13px; }
+#estado:empty, #copiado:empty { display: none; }
+footer { text-align: center; }
+footer p { display: inline-block; margin: 25px 0 10px; padding: 8px 14px; border-radius: 25px; background: #139549; color: white; font-size: 13px; }
+#qr { display: block; margin: 12px auto; max-width: 100%; object-fit: contain; }
+textarea { resize: vertical; }
+@media (max-width: 420px) { .painel { margin-top: 14px; } .linha { grid-template-columns: 1fr; gap: 10px; } }
+
+
+.oferta-beneficios {
+  margin: 9px 0 0;
+  padding-left: 19px;
+  color: #526071;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.oferta-beneficios li + li { margin-top: 3px; }
+
+.pix-copia { padding: 16px; border: 1px solid #c6d7ce; border-radius: 10px; background: #f7fbf8; }
+.pix-copia label { font-weight: 700; }
+.pix-copia ol { padding-left: 20px; margin: 8px 0 12px; }
+.pix-copia li + li { margin-top: 5px; }
+#codigo { width: 100%; box-sizing: border-box; font-family: monospace; overflow-wrap: anywhere; }
+#copiar { width: 100%; min-height: 46px; font-weight: 700; }
+#copiado:not(:empty) { border-radius: 6px; padding: 8px 10px; font-weight: 600; }
+#copiado[data-resultado="sucesso"] { color: #14532d; background: #dcfce7; }
+#copiado[data-resultado="manual"] { color: #71490d; background: #fef3c7; }
+
+.dados{min-width:0;margin:0;padding:0;border:0}footer a{color:inherit}
+
+.oferta-descricao {
+  grid-column: 1 / -1;
+  padding: 10px 12px;
+  border-top: 1px solid #e1e5eb;
+  color: #536178;
+  font-size: 12px;
+}
+.oferta-descricao p { margin: 0; }
