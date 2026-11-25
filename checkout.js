@@ -37,10 +37,15 @@ checkoutForm.addEventListener('submit', async (event) => {
   if (payButton.disabled) return;
   const fields = new FormData(checkoutForm);
   const customer = Object.fromEntries(['name', 'email', 'document', 'phone'].map((key) => [key, fields.get(key)]));
+  const attribution = Object.fromEntries(['src', 'sck', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'].map((key) => [key, params.get(key)]));
+  for (const key of ['_fbp', '_fbc']) {
+    attribution[key] = document.cookie.split('; ').find((part) => part.startsWith(key + '='))?.slice(key.length + 1);
+  }
   const order = {
     plan: complete ? (completePrice === 1990 ? 'promocional' : 'completo') : 'basico',
     extras: fields.getAll('oferta'),
     customer,
+    attribution,
   };
 
   payButton.disabled = true;
@@ -93,7 +98,7 @@ document.querySelector('#copy-pix').addEventListener('click', async () => {
   copyStatus.hidden = false;
 });
 
-function pollPix({ id, token }) {
+function pollPix({ id, token, amount }) {
   const query = new URLSearchParams({ id, token });
   const deadline = Date.now() + 30 * 60 * 1000;
   const pending = new Set(['pending', 'processing', 'antifraud']);
@@ -103,6 +108,9 @@ function pollPix({ id, token }) {
       if (response.ok) {
         const { status } = await response.json();
         if (!pending.has(status)) {
+          if (status === 'paid') {
+            window.fbq?.('track', 'Purchase', { currency: 'BRL', value: amount / 100 }, { eventID: 'purchase-' + id });
+          }
           pixStatus.textContent = status === 'paid' ? 'Pagamento confirmado.' :
             status === 'expired' ? 'Cobrança expirada.' : 'Cobrança encerrada. Status: ' + status;
           return;
@@ -116,3 +124,6 @@ function pollPix({ id, token }) {
   }
   setTimeout(check, 10000);
 }
+
+const checkoutValue = Number(total.textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+window.fbq?.('track', 'InitiateCheckout', { currency: 'BRL', value: checkoutValue });

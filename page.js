@@ -104,3 +104,13 @@ basicOffer.addEventListener('click', (event) => {
   event.preventDefault();
   upgradeOffer.showModal();
 });
+
+const attributionKeys = ['src', 'sck', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+const landingParams = new URLSearchParams(window.location.search);
+for (const link of document.querySelectorAll('a[href^="/checkout.html"]')) {
+  const checkout = new URL(link.href);
+  for (const key of attributionKeys) {
+    if (landingParams.has(key)) checkout.searchParams.set(key, landingParams.get(key));
+  }
+  link.href = checkout.href;
+}

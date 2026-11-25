@@ -1,5 +1,6 @@
 const { createHmac, timingSafeEqual } = require('node:crypto');
 const QRCode = require('qrcode');
+const { postback } = require('../lib/attribution');
 
 const endpoint = 'https://api.invictuspayv2.com.br/api/v1/transactions';
 const plans = {
@@ -69,6 +70,9 @@ module.exports = async function pix(req, res) {
     const purchase = order(req.body);
     if (!purchase) return res.status(400).json({ error: 'Confira os dados e os itens da compra.' });
 
+    if (process.env.UTMIFY_API_TOKEN || process.env.META_CAPI_ACCESS_TOKEN) {
+      purchase.postbackUrl = postback(purchase, req.body.attribution, key);
+    }
     const response = await fetch(endpoint, {
       ...options,
       method: 'POST',
@@ -86,7 +90,7 @@ module.exports = async function pix(req, res) {
       return res.status(502).json({ error: 'A cobrança pode ter sido criada, mas o código Pix não pôde ser exibido.' });
     }
     const qr = await QRCode.toDataURL(code, { width: 224 }).catch(() => null);
-    return res.status(201).json({ id, token: signature(id, key), code, qr });
+    return res.status(201).json({ id, token: signature(id, key), amount: purchase.amount, code, qr });
   } catch {
     return res.status(502).json({ error: 'Não foi possível confirmar a operação com a InvictusPay.' });
   }

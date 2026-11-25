@@ -16,3 +16,17 @@ Copia e Cola e confirma o pagamento quando a consulta retorna `paid`.
 Antes de liberar vendas, valide a resposta de criação de Pix em uma conta
 de teste. A documentação fornecida não inclui o JSON de retorno dessa
 operação. A confirmação no checkout não realiza a entrega automática do PDF.
+
+## Rastreamento
+
+Cadastre `UTMIFY_API_TOKEN` e `META_CAPI_ACCESS_TOKEN` como segredos de
+servidor no projeto de produção da Vercel. Gere uma credencial de API na
+UTMify e um token da API de Conversões associado ao pixel Meta configurado
+no site. Faça um redeploy após adicionar as variáveis.
+
+Compras novas incluem uma URL de postback assinada quando pelo menos um
+token está configurado. A função confirma o Pix na InvictusPay antes de
+enviar a venda. O identificador da transação vincula a venda na UTMify e
+é usado como identificador de evento no navegador e na API da Meta.
+Na ausência de uma taxa inteira em centavos no retorno da InvictusPay,
+a UTMify recebe a venda bruta com taxa zero.
