@@ -9,10 +9,10 @@ const plans = {
   promocional: ['Pacote Completo com desconto', 1990],
 };
 const extras = {
-  colorir: ['Bobbie Goods', 690],
-  cenarios: ['Acessórios e Cenários', 590],
+  colorir: ['Bobbie Goods', 990],
+  cenarios: ['Acessórios e Cenários', 990],
   gamer: ['Kit Roblox', 490],
-  princesas: ['Edição Princesas', 490],
+  princesas: ['Edição Princesas', 1290],
 };
 const transactionId = /^[0-9A-HJKMNP-TV-Z]{26}$/i;
 const statuses = new Set(['pending', 'processing', 'antifraud', 'paid', 'failed', 'refused', 'expired', 'cancelled', 'refunded', 'in_dispute', 'pre_chargeback', 'chargeback']);
