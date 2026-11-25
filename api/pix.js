@@ -41,7 +41,7 @@ function order(body) {
 
 module.exports = async function pix(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  const key = process.env.INVICTUSPAY_API_KEY;
+  const key = process.env.INVICTUSPAY_API_KEY || process.env.NVICTUSPAY_API_KEY;
   if (!key) return res.status(503).json({ error: 'Pagamento Pix indisponível.' });
 
   try {
