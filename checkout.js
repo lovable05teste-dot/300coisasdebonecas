@@ -32,19 +32,6 @@ const pixResult = document.querySelector('#pix-result');
 const pixCode = document.querySelector('#pix-code');
 const pixStatus = document.querySelector('#pix-status');
 
-async function enablePayment() {
-  try {
-    const response = await fetch('/api/pix', { cache: 'no-store' });
-    if (!response.ok || !(await response.json()).available) return;
-    customerFields.disabled = false;
-    payButton.disabled = false;
-    checkoutStatus.textContent = '';
-  } catch {
-    // A prévia estática continua disponível sem a API.
-  }
-}
-enablePayment();
-
 checkoutForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (payButton.disabled) return;
@@ -66,10 +53,10 @@ checkoutForm.addEventListener('submit', async (event) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(order),
     });
-    const result = await response.json();
+    const result = await response.json().catch(() => ({}));
     if (!response.ok) {
       checkoutStatus.textContent = result.error || 'Não foi possível gerar o Pix.';
-      if (response.status === 400) {
+      if ([400, 404, 503].includes(response.status)) {
         payButton.disabled = false;
         customerFields.disabled = false;
         for (const item of offers) item.disabled = false;
