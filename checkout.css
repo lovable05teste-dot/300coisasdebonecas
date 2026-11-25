@@ -41,8 +41,6 @@ button { display: block; width: 100%; margin-top: 13px; padding: 9px; border: 0;
 button:disabled { background: #8ac8a4; color: #213d2d; cursor: default; }
 #estado, #copiado { margin-top: 8px; font-size: 13px; }
 #estado:empty, #copiado:empty { display: none; }
-footer { text-align: center; }
-footer p { display: inline-block; margin: 25px 0 10px; padding: 8px 14px; border-radius: 25px; background: #139549; color: white; font-size: 13px; }
 #qr { display: block; margin: 12px auto; max-width: 100%; object-fit: contain; }
 textarea { resize: vertical; }
 @media (max-width: 420px) { .painel { margin-top: 14px; } .linha { grid-template-columns: 1fr; gap: 10px; } }
@@ -67,7 +65,7 @@ textarea { resize: vertical; }
 #copiado[data-resultado="sucesso"] { color: #14532d; background: #dcfce7; }
 #copiado[data-resultado="manual"] { color: #71490d; background: #fef3c7; }
 
-.dados{min-width:0;margin:0;padding:0;border:0}footer a{color:inherit}
+.dados{min-width:0;margin:0;padding:0;border:0}
 
 .oferta-descricao {
   grid-column: 1 / -1;
@@ -77,3 +75,19 @@ textarea { resize: vertical; }
   font-size: 12px;
 }
 .oferta-descricao p { margin: 0; }
+
+
+.pix-result { margin-top: 20px; padding-top: 20px; border-top: 1px solid #dce2e8; }
+.pix-result h1 { margin: 0 0 12px; text-align: center; }
+.pix-amount, .pix-status { text-align: center; }
+.pix-amount strong { display: block; margin-top: 3px; font-size: 22px; color: #182938; }
+.pix-status { padding: 10px; border-radius: 7px; background: #e7f6ed; color: #135d39; font-weight: 600; }
+#pix-qr { display: block; max-width: 100%; height: auto; margin: 16px auto; }
+.pix-result label { display: block; margin: 16px 0 5px; }
+#pix-code { width: 100%; padding: 10px; border: 1px solid #b9c6cf; border-radius: 7px; resize: vertical; font: 14px monospace; }
+.pix-copy { width: 100%; margin-top: 8px; padding: 12px; border: 0; border-radius: 7px; background: #087d3b; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.pix-steps { padding-left: 22px; line-height: 1.5; }
+.pix-steps li + li { margin-top: 6px; }
+.checkout-footer { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 24px 0 10px; text-align: center; }
+.checkout-footer p { margin: 0; padding: 7px 13px; border-radius: 20px; background: #e7f6ed; color: #135d39; font-size: 13px; }
+.checkout-footer a { color: #234757; text-underline-offset: 3px; }

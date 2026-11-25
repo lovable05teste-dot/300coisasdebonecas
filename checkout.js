@@ -69,8 +69,10 @@ checkoutForm.addEventListener('submit', async (event) => {
       qr.src = result.qr;
       qr.hidden = false;
     }
+    document.querySelector('#pix-amount').textContent = total.textContent;
+    checkoutForm.hidden = true;
     pixResult.hidden = false;
-    checkoutStatus.textContent = 'Pix gerado.';
+    window.scrollTo(0, 0);
     document.querySelector('#pix-title').focus();
     pollPix(result);
   } catch {
@@ -78,13 +80,17 @@ checkoutForm.addEventListener('submit', async (event) => {
   }
 });
 
+const copyStatus = document.querySelector('#copy-status');
 document.querySelector('#copy-pix').addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(pixCode.value);
-    document.querySelector('#copy-pix').textContent = 'Código copiado';
+    copyStatus.textContent = 'Código copiado.';
   } catch {
+    pixCode.focus();
     pixCode.select();
+    copyStatus.textContent = 'Código selecionado. Copie-o para pagar no seu banco.';
   }
+  copyStatus.hidden = false;
 });
 
 function pollPix({ id, token }) {

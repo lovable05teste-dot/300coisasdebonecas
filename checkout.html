@@ -72,15 +72,25 @@
       <button id="pagar" type="submit">Gerar Pix</button>
       <p id="estado" role="status"></p>
     </form>
-    <section id="pix-result" hidden aria-labelledby="pix-title">
-      <h2 id="pix-title" tabindex="-1">Pix Copia e Cola</h2>
-      <img id="pix-qr" width="224" height="224" alt="QR Code Pix" hidden>
-      <label for="pix-code">Código Pix</label>
-      <textarea id="pix-code" rows="4" readonly></textarea>
-      <button type="button" id="copy-pix">Copiar código Pix</button>
-      <p id="pix-status" role="status">Aguardando pagamento.</p>
+    <section id="pix-result" class="pix-result" hidden aria-labelledby="pix-title">
+      <h1 id="pix-title" tabindex="-1">Seu Pix está pronto</h1>
+      <p class="pix-amount">Total a pagar <strong id="pix-amount"></strong></p>
+      <p id="pix-status" class="pix-status" role="status">Aguardando pagamento.</p>
+      <img id="pix-qr" width="224" height="224" alt="QR Code da cobrança Pix" hidden>
+      <label for="pix-code">Pix Copia e Cola</label>
+      <textarea id="pix-code" rows="3" readonly spellcheck="false"></textarea>
+      <button type="button" id="copy-pix" class="pix-copy">Copiar código Pix</button>
+      <p id="copy-status" role="status" hidden></p>
+      <ol class="pix-steps">
+        <li>Abra a área Pix no aplicativo do seu banco.</li>
+        <li>Escaneie o QR Code ou escolha Pix Copia e Cola e cole o código.</li>
+        <li>Confira o valor e confirme no banco. A confirmação aparece aqui.</li>
+      </ol>
     </section>
-    <footer><a href="/#planos">Voltar aos pacotes</a><p><span aria-hidden="true">❖</span> Pagamento via Pix</p></footer>
+    <footer class="checkout-footer">
+      <p><span aria-hidden="true">❖</span> Pagamento via Pix</p>
+      <a href="/#planos">Voltar aos pacotes</a>
+    </footer>
   </main>
 </body>
 </html>
