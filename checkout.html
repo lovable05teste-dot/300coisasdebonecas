@@ -72,6 +72,14 @@
       <button id="pagar" type="submit" disabled>Finalizar pagamento</button>
       <p id="estado" role="status">Pagamento indisponível nesta prévia.</p>
     </form>
+    <section id="pix-result" hidden aria-labelledby="pix-title">
+      <h2 id="pix-title" tabindex="-1">Pix Copia e Cola</h2>
+      <img id="pix-qr" width="224" height="224" alt="QR Code Pix" hidden>
+      <label for="pix-code">Código Pix</label>
+      <textarea id="pix-code" rows="4" readonly></textarea>
+      <button type="button" id="copy-pix">Copiar código Pix</button>
+      <p id="pix-status" role="status">Aguardando pagamento.</p>
+    </section>
     <footer><a href="/#planos">Voltar aos pacotes</a><p><span aria-hidden="true">❖</span> Pagamento via Pix</p></footer>
   </main>
 </body>
